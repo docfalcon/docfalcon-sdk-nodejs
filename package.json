@@ -1,0 +1,28 @@
+{
+  "name": "docfalcon-sdk",
+  "version": "1.0.0",
+  "description": "DocFalcon SDK for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/docfalcon/docfalcon-sdk-nodejs.git"
+  },
+  "keywords": [
+    "docfalcon",
+    "pdf",
+    "render"
+  ],
+  "contributors": [
+    "Diego Ferri <diego.ferri@looptribe.com>",
+    "Claudio Gandelli <claudio.gandelli@looptribe.com>",
+    "Andrea Ghidini <andrea.ghidini@looptribe.com>"
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/docfalcon/docfalcon-sdk-nodejs/issues"
+  },
+  "homepage": "https://github.com/docfalcon/docfalcon-sdk-nodejs#readme"
+}
