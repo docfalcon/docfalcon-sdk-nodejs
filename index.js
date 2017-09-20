@@ -13,8 +13,16 @@ function DocFalconClient (apikey) {
             json: document,
             encoding: null
         };
-        request(options, function (error, response) {
-            callback(error, response.body);
+        request(options, function (error, response, body) {
+            if (error) {
+                callback(error);
+            }
+            else if (response.statusCode !== 200) {
+                callback(body.toString())
+            }
+            else {
+                callback(error, body);
+            }
         });
     };
 }
