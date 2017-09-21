@@ -2,6 +2,9 @@
   "name": "docfalcon-sdk",
   "version": "1.0.0",
   "description": "DocFalcon SDK for Node.js",
+  "scripts": {
+    "test": "mocha tests -t 5000"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/docfalcon/docfalcon-sdk-nodejs.git"
@@ -24,5 +27,10 @@
   "dependencies": {
     "qs": "^6.5.1",
     "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "nock": "^9.0.17"
   }
 }
