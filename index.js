@@ -1,8 +1,12 @@
-var request = require('request'),
+'use strict';
+
+var _ = require('lodash'),
+    request = require('request'),
     qs = require('qs');
 
+var API_URL = 'https://www.docfalcon.com/api/v1/pdf';
+
 function DocFalconClient (apikey) {
-    var API_URL = 'https://www.docfalcon.com/api/v1/pdf';
     if (!(typeof apikey === 'string')) {
         throw new Error('Missing apikey.');
     }
@@ -18,7 +22,8 @@ function DocFalconClient (apikey) {
                 callback(error);
             }
             else if (response.statusCode !== 200) {
-                callback(body.toString())
+                var message = _.head((_.head(body.formattedErrors)).errors);
+                callback(new Error(message));
             }
             else {
                 callback(error, body);
