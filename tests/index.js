@@ -45,7 +45,7 @@ describe('DocFalconClient', function () {
             document = {
             };
             sut = new DocFalconClient('apikey');
-            sut.generate(document, function (error, data) {
+            sut.generate(document, function (error) {
                 expect(error).to.be(Error);
                 expect(error.message).to.be('\'Document\' must not be empty.');
             });
