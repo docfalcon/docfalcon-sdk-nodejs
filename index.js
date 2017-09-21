@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('lodash'),
-    request = require('request'),
+var request = require('request'),
     qs = require('qs');
 
 var API_URL = 'https://www.docfalcon.com/api/v1/pdf';
@@ -22,7 +21,7 @@ function DocFalconClient (apikey) {
                 callback(error);
             }
             else if (response.statusCode !== 200) {
-                var message = _.head((_.head(body.formattedErrors)).errors);
+                var message = body.formattedErrors[0].errors[0];
                 callback(new Error(message));
             }
             else {
