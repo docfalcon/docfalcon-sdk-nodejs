@@ -24,8 +24,12 @@ function DocFalconClient (apikey) {
                 callback(error);
             }
             else if (response.statusCode !== 200) {
-                var message = body.formattedErrors[0].errors[0];
-                callback(new Error(message));
+                if (typeof body === 'object' && body !== null && body.errors) {
+                    callback(new Error(body.errors[0]));
+                }
+                else {
+                    callback(new Error('HTTP error: ' + response.statusCode));
+                }
             }
             else {
                 callback(error, body);
