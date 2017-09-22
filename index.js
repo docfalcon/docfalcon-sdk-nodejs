@@ -14,7 +14,10 @@ function DocFalconClient (apikey) {
             method: 'POST',
             uri: API_URL + '?' + qs.stringify({ apikey: apikey }),
             json: document,
-            encoding: null
+            encoding: null,
+            headers: {
+                'Accept': 'application/json, application/pdf'
+            }
         };
         request(options, function (error, response, body) {
             if (error) {
