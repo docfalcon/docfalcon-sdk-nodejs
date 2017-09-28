@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/docfalcon/docfalcon-sdk-nodejs",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "qs": "^6.5.1",
     "request": "^2.81.0"
   },
