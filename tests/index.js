@@ -56,11 +56,7 @@ describe('DocFalconClient', function () {
         it('should return an error for a malformed document (callback style)', function (done) {
             nock('https://www.docfalcon.com')
                 .post('/api/v1/pdf?apikey=apikey')
-                .reply(400, {
-                    errors: [
-                        '\'Document\' must not be empty.'
-                    ]
-                });
+                .reply(400, { message: '\'Document\' must not be empty.' });
             document = {
             };
             sut = new DocFalconClient('apikey');
@@ -73,11 +69,7 @@ describe('DocFalconClient', function () {
         it('should return an error for a malformed document (promise style)', function () {
             nock('https://www.docfalcon.com')
                 .post('/api/v1/pdf?apikey=apikey')
-                .reply(400, {
-                    errors: [
-                        '\'Document\' must not be empty.'
-                    ]
-                });
+                .reply(400, { message: '\'Document\' must not be empty.' });
             document = {
             };
             sut = new DocFalconClient('apikey');
@@ -87,7 +79,7 @@ describe('DocFalconClient', function () {
                     expect(error.message).to.equal('\'Document\' must not be empty.');
                 });
         });
-        it('should return an error on generic error (callback style)', function (done) {
+        it('should return an error on unknown error (callback style)', function (done) {
             nock('https://www.docfalcon.com')
                 .post('/api/v1/pdf?apikey=apikey')
                 .reply(522);
@@ -100,7 +92,7 @@ describe('DocFalconClient', function () {
                 done();
             });
         });
-        it('should return an error on generic error (promise style)', function () {
+        it('should return an error on unknown error (promise style)', function () {
             nock('https://www.docfalcon.com')
                 .post('/api/v1/pdf?apikey=apikey')
                 .reply(522);

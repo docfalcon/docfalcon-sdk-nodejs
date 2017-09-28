@@ -27,8 +27,8 @@ function DocFalconClient (apikey) {
                 }
                 else if (response.statusCode !== 200) {
                     var err;
-                    if (typeof body === 'object' && body !== null && body.errors) {
-                        err = new Error(body.errors[0]);
+                    if (typeof body === 'object' && body !== null && body.message) {
+                        err = new Error(body.message);
                     }
                     else {
                         err = new Error('HTTP error: ' + response.statusCode + '.');
