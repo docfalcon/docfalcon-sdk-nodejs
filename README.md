@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/docfalcon/docfalcon-sdk-nodejs.svg?branch=master)](https://travis-ci.org/docfalcon/docfalcon-sdk-nodejs)
 [![Coverage Status](https://coveralls.io/repos/github/docfalcon/docfalcon-sdk-nodejs/badge.svg?branch=master)](https://coveralls.io/github/docfalcon/docfalcon-sdk-nodejs?branch=master)
+[![npm version](https://badge.fury.io/js/docfalcon-sdk.svg)](https://badge.fury.io/js/docfalcon-sdk)
 
 ## Introduction
 
