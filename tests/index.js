@@ -20,7 +20,7 @@ describe('DocFalconClient', function () {
     });
 
     describe('generate()', function () {
-        it('should return a buffered pdf stream as response', function (done) {
+        it('should return a buffered pdf stream as response (callback style)', function (done) {
             nock('https://www.docfalcon.com')
                 .post('/api/v1/pdf?apikey=apikey')
                 .reply(200, new Buffer([0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34]));
@@ -37,7 +37,23 @@ describe('DocFalconClient', function () {
                 done();
             });
         });
-        it('should return an error for a malformed document', function (done) {
+        it('should return a buffered pdf stream as response (promise style)', function () {
+            nock('https://www.docfalcon.com')
+                .post('/api/v1/pdf?apikey=apikey')
+                .reply(200, new Buffer([0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34]));
+            document = {
+                document: {
+                    pages: [{ }]
+                }
+            };
+            sut = new DocFalconClient('apikey');
+            return sut.generate(document)
+                .then(function (data) {
+                    expect(data).to.be.an.instanceof(Buffer);
+                    expect(data).to.have.lengthOf(8);
+                });
+        });
+        it('should return an error for a malformed document (callback style)', function (done) {
             nock('https://www.docfalcon.com')
                 .post('/api/v1/pdf?apikey=apikey')
                 .reply(400, {
@@ -54,7 +70,24 @@ describe('DocFalconClient', function () {
                 done();
             });
         });
-        it('should return an error on generic error', function (done) {
+        it('should return an error for a malformed document (promise style)', function () {
+            nock('https://www.docfalcon.com')
+                .post('/api/v1/pdf?apikey=apikey')
+                .reply(400, {
+                    errors: [
+                        '\'Document\' must not be empty.'
+                    ]
+                });
+            document = {
+            };
+            sut = new DocFalconClient('apikey');
+            return sut.generate(document)
+                .catch(function (error) {
+                    expect(error).to.be.an.instanceof(Error);
+                    expect(error.message).to.equal('\'Document\' must not be empty.');
+                });
+        });
+        it('should return an error on generic error (callback style)', function (done) {
             nock('https://www.docfalcon.com')
                 .post('/api/v1/pdf?apikey=apikey')
                 .reply(522);
@@ -63,9 +96,22 @@ describe('DocFalconClient', function () {
             sut = new DocFalconClient('apikey');
             sut.generate(document, function (error) {
                 expect(error).to.be.an.instanceof(Error);
-                expect(error.message).to.equal('HTTP error: 522');
+                expect(error.message).to.equal('HTTP error: 522.');
                 done();
             });
+        });
+        it('should return an error on generic error (promise style)', function () {
+            nock('https://www.docfalcon.com')
+                .post('/api/v1/pdf?apikey=apikey')
+                .reply(522);
+            document = {
+            };
+            sut = new DocFalconClient('apikey');
+            return sut.generate(document)
+                .catch (function (error) {
+                    expect(error).to.be.an.instanceof(Error);
+                    expect(error.message).to.equal('HTTP error: 522.');
+                });
         });
     });
 });
