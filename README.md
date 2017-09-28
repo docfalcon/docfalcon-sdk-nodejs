@@ -24,7 +24,7 @@ This library is a very simple wrapper around an http client and supports both ca
 
 This is an example on use it with a callback
 
-```
+```javascript
 'use strict';
 
 var DocFalconClient = require('docfalcon-sdk'),
@@ -45,7 +45,7 @@ docfalcon.generate(businessCard, function (error, response) {
 ```
 
 The same can be achieved with promises
-```
+```javascript
 'use strict';
 
 var DocFalconClient = require('docfalcon-sdk'),
