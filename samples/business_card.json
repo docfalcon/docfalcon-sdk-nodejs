@@ -1,0 +1,62 @@
+{
+  "document": {
+    "title": "DocFalcon Sample - Business Card",
+    "pages": [
+      {
+        "width": "3.5in",
+        "height": "2in",
+        "canvas": [
+          {
+            "x": "1.5in",
+            "y": ".6in",
+            "width": "1.875in",
+            "height": "1.3in",
+            "items": [
+              {
+                "type": "paragraph",
+                "value": "Mr. John Smith",
+                "font": "font:Arial",
+                "fontSize": 14,
+                "marginBottom": ".05in"
+              },
+              {
+                "type": "paragraph",
+                "value": "Engineer",
+                "font": "font:Arial",
+                "fontSize": 10,
+                "marginBottom": ".3in"
+              },
+              {
+                "type": "paragraph",
+                "value": "Email: info@example.net",
+                "font": "font:Arial",
+                "fontSize": 8,
+                "marginBottom": ".05in"
+              },
+              {
+                "type": "paragraph",
+                "value": "Tel: +1-999-999-9999",
+                "font": "font:Arial",
+                "fontSize": 8
+              }
+            ]
+          },
+          {
+            "x": ".125in",
+            "y": ".125in",
+            "width": "3.75",
+            "height": "1.75in",
+            "items": [
+              {
+                "type": "image",
+                "source": "https://www.looptribe.com/wp-content/themes/looptribe/images/logo.png",
+                "width": ".7025in",
+                "height": ".13in"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
