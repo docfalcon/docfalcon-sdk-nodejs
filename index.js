@@ -1,6 +1,7 @@
 'use strict';
 
-var request = require('request'),
+var Promise = require('bluebird'),
+    request = require('request'),
     qs = require('qs');
 
 var API_URL = 'https://www.docfalcon.com/api/v1/pdf';
@@ -19,22 +20,29 @@ function DocFalconClient (apikey) {
                 'Accept': 'application/json, application/pdf'
             }
         };
-        request(options, function (error, response, body) {
-            if (error) {
-                callback(error);
-            }
-            else if (response.statusCode !== 200) {
-                if (typeof body === 'object' && body !== null && body.errors) {
-                    callback(new Error(body.errors[0]));
+        return new Promise(function (resolve, reject) {
+            request(options, function (error, response, body) {
+                if (error) {
+                    return reject(error);
+                }
+                else if (response.statusCode !== 200) {
+                    var err;
+                    if (typeof body === 'object' && body !== null && body.errors) {
+                        err = new Error(body.errors[0]);
+                    }
+                    else {
+                        err = new Error('HTTP error: ' + response.statusCode + '.');
+                        reject(err);
+                    }
+                    return reject(err);
                 }
                 else {
-                    callback(new Error('HTTP error: ' + response.statusCode));
+                    return resolve(body);
+
                 }
-            }
-            else {
-                callback(error, body);
-            }
-        });
+            });
+        })
+            .nodeify(callback);
     };
 }
 
