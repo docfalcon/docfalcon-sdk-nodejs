@@ -105,5 +105,31 @@ describe('DocFalconClient', function () {
                     expect(error.message).to.equal('HTTP error: 522.');
                 });
         });
+        it('should return an error on request error (callback style)', function (done) {
+            nock('https://www.docfalcon.com')
+                .post('/api/v1/pdf?apikey=apikey')
+                .replyWithError('Request error.');
+            document = {
+            };
+            sut = new DocFalconClient('apikey');
+            sut.generate(document, function (error) {
+                expect(error).to.be.an.instanceof(Error);
+                expect(error.message).to.equal('Request error.');
+                done();
+            });
+        });
+        it('should return an error on request error (promise style)', function () {
+            nock('https://www.docfalcon.com')
+                .post('/api/v1/pdf?apikey=apikey')
+                .replyWithError('Request error.');
+            document = {
+            };
+            sut = new DocFalconClient('apikey');
+            return sut.generate(document)
+                .catch (function (error) {
+                    expect(error).to.be.an.instanceof(Error);
+                    expect(error.message).to.equal('Request error.');
+                });
+        });
     });
 });
