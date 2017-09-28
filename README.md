@@ -1,6 +1,7 @@
 # DocFalcon SDK for Nodejs
 
 [![Build Status](https://travis-ci.org/docfalcon/docfalcon-sdk-nodejs.svg?branch=master)](https://travis-ci.org/docfalcon/docfalcon-sdk-nodejs)
+[![Coverage Status](https://coveralls.io/repos/github/docfalcon/docfalcon-sdk-nodejs/badge.svg?branch=master)](https://coveralls.io/github/docfalcon/docfalcon-sdk-nodejs?branch=master)
 
 ## Introduction
 
@@ -10,7 +11,9 @@ We welcome [feedback and issues](https://github.com/docfalcon/docfalcon-sdk-node
 
 ## Installation
 
-TODO
+```
+npm i --save docfalcon-sdk
+```
 
 ## Usage
 
@@ -24,7 +27,7 @@ This is an example on use it with a callback
 ```
 'use strict';
 
-var DocFalconClient = require('./index.js'),
+var DocFalconClient = require('docfalcon-sdk'),
     fs = require('fs');
 
 var businessCard = require('./samples/business_card.json');
@@ -45,7 +48,7 @@ The same can be achieved with promises
 ```
 'use strict';
 
-var DocFalconClient = require('./index.js'),
+var DocFalconClient = require('docfalcon-sdk'),
     fs = require('fs');
 
 var businessCard = require('./samples/business_card.json');
